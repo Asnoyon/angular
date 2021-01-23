@@ -128,7 +128,6 @@ export class httpInterceptor implements HttpInterceptor {
         lastName: user.lastName,
         token: (user.role === 'Admin' ? 'admin' : 'user') + 'token',
       };
-      console.log(localSave);
       return ok(localSave);
     }
 
