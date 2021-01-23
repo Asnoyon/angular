@@ -12,7 +12,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users | orderBy: key:reverse | paginate:{itemsPerPage: 3, currentPage: p};">
+    <tr
+      *ngFor="
+        let user of users
+          | orderBy: key:reverse
+          | paginate: { itemsPerPage: 3, currentPage: p }
+      "
+    >
       <td>{{ user.firstName }}</td>
       <td>{{ user.lastName }}</td>
       <td>{{ user.email }}</td>

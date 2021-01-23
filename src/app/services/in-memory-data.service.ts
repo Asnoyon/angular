@@ -14,6 +14,12 @@ export class InMemoryDataService implements InMemoryDbService {
         lastName: 'Miah',
         email: 'admin@gmail.com',
         password: 'Ismail1',
+        phone: '',
+        gender: '',
+        role: 'Admin',
+        address: '',
+        interests: '',
+        dateOfBirth: '',
       },
       {
         id: 2,
@@ -21,6 +27,12 @@ export class InMemoryDataService implements InMemoryDbService {
         lastName: 'Roy',
         email: 'bappi@gmail.com',
         password: 'Ismail1',
+        phone: '',
+        gender: '',
+        role: 'User',
+        address: '',
+        interests: '',
+        dateOfBirth: '',
       },
       {
         id: 3,
@@ -28,6 +40,12 @@ export class InMemoryDataService implements InMemoryDbService {
         lastName: 'Hasan',
         email: 'rabiul@gmail.com',
         password: 'Ismail1',
+        phone: '',
+        gender: '',
+        role: 'User',
+        address: '',
+        interests: '',
+        dateOfBirth: '',
       },
       {
         id: 4,
@@ -35,6 +53,12 @@ export class InMemoryDataService implements InMemoryDbService {
         lastName: 'Ahamed',
         email: 'tahsan@gmail.com',
         password: 'Ismail1',
+        phone: '',
+        gender: '',
+        role: 'User',
+        address: '',
+        interests: '',
+        dateOfBirth: '',
       },
       {
         id: 5,
@@ -42,8 +66,15 @@ export class InMemoryDataService implements InMemoryDbService {
         lastName: 'Miah',
         email: 'zahid@gmail.com',
         password: 'Ismail1',
+        phone: '',
+        gender: '',
+        role: 'User',
+        address: '',
+        interests: '',
+        dateOfBirth: '',
       },
     ];
+    
     return { users };
   }
 

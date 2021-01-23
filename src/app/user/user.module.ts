@@ -20,6 +20,6 @@ import { DatePickerDirective } from '../Utils/directives/date-picker.directive';
     mrPipe,
   ],
   imports: [CommonModule, UserRoutingModule, ReactiveFormsModule],
-  providers: [DatePipe] 
+  providers: [DatePipe],
 })
 export class UserModule {}

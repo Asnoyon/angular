@@ -26,7 +26,7 @@ const routes: Routes = [
         path: 'edit/:id',
         component: ProfileEditComponent,
         resolve: { edit: UserEditResolverService },
-        canActivate: [AdminGuard]
+        canActivate: [AdminGuard],
       },
       {
         path: 'users-list',

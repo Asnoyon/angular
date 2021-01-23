@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthUser } from 'src/app/Model';
 import { DataService } from 'src/app/services';
 
 @Component({
@@ -14,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.user.subscribe((status) => {
-      this.isLoggedIn$ = status?true: false;
+      this.isLoggedIn$ = status ? true : false;
     });
   }
   logout() {

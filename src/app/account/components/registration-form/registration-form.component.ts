@@ -36,7 +36,6 @@ export class RegistrationFormComponent implements OnInit {
 
     this.alertService.clear();
     if (this.signUpForm.invalid) {
-      console.log('form not valid')
       return;
     }
     this.loading = true;

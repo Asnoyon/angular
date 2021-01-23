@@ -1,23 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { User } from 'src/app/Model';
 import { AlertService, DataService } from 'src/app/services';
 
 @Component({
   selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  templateUrl: './users.list.component.html',
+  styleUrls: ['./users.list.component.css'],
 })
-export class UsersComponent implements OnInit, OnDestroy {
+export class UsersListComponent implements OnInit, OnDestroy {
   users = null;
   dataSubscription: Subscription;
 
   p: number = 1;
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService
   ) {}
