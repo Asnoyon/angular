@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { DataService } from '../../services';
+import { DataService } from '../services';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
+          console.log(err);
             if (err.status === 401) {
                 this.dataService.logout();
             }

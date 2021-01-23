@@ -5,10 +5,11 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { User } from '../../Model';
+import { User } from '../Model';
 
 let users: User[] = [
   {
@@ -79,7 +80,7 @@ let users: User[] = [
 ];
 
 @Injectable()
-export class InterceptorService implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -128,6 +129,7 @@ export class InterceptorService implements HttpInterceptor {
         lastName: user.lastName,
         token: (user.role === 'Admin' ? 'admin' : 'user') + 'token',
       };
+      console.log(localSave)
       return ok(localSave);
     }
 
@@ -145,8 +147,7 @@ export class InterceptorService implements HttpInterceptor {
 
     function getUsers() {
       if (!isLoggedIn()) return unauthorized();
-      const onlyUser = users.filter(x=>x.role==='User');
-      return ok(onlyUser);
+      return ok(users);
     }
 
     function getUserById() {
@@ -202,3 +203,6 @@ export class InterceptorService implements HttpInterceptor {
     }
   }
 }
+export const authInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+];

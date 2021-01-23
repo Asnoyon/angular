@@ -4,12 +4,13 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DataService } from '../../services';
+import { DataService } from '../services';
 
 @Injectable()
-export class TokenInterceptorService implements HttpInterceptor {
+export class JwtInterceptorService implements HttpInterceptor {
   constructor(private dataService: DataService) {}
   private usersUrl = 'http://localhost:4200';
 
@@ -32,3 +33,6 @@ export class TokenInterceptorService implements HttpInterceptor {
     return next.handle(request);
   }
 }
+export const authToketnInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+];

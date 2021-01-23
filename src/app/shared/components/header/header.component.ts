@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AuthUser } from 'src/app/Model';
 import { DataService } from 'src/app/services';
 
 @Component({

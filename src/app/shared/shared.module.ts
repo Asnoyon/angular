@@ -4,7 +4,7 @@ import {
   FooterComponent,
   HeaderComponent,
   MainContentComponent,
-  HomeComponent,
+  HomeComponent
 } from './components';
 import { SharedRoutingModule } from './shared.routing.module';
 import { AlertComponent } from './components/alert/alert.component';
@@ -19,8 +19,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     PageNotFoundComponent,
     HomeComponent,
   ],
-  imports: [CommonModule, SharedRoutingModule],
+  imports: [
+    CommonModule,
+    SharedRoutingModule,
+  ],
 })
 export class SharedModule {
-  constructor() {}
+  constructor() { }
 }

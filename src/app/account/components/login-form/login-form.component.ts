@@ -53,12 +53,7 @@ export class LoginFormComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          if (
-            JSON.parse(localStorage.getItem('currentUser'))['token'] ===
-            'admintoken'
-          )
-            this.router.navigate(['user/users-list']);
-          else this.router.navigate(['user']);
+          this.router.navigate(['user']);
         },
         (error) => {
           if (this.loginForm.invalid) this.alertService.error('Form Not Valid');

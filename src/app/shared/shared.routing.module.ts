@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, LoggedGuard } from '../Auth';
+import { AuthGuard } from '../Auth';
 import { ProfileResolverService } from '../services';
 import {
   MainContentComponent,
@@ -21,7 +21,6 @@ const routes: Routes = [
         path: 'account',
         loadChildren: () =>
           import('../account/account.module').then((m) => m.AccountModule),
-        canActivate: [LoggedGuard],
       },
       {
         path: 'user',

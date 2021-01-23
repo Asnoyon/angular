@@ -20,7 +20,9 @@ export class AlertComponent implements OnInit, OnDestroy {
         // subscribe to new alert notifications
         this.alertSubscription = this.alertService.onAlert(this.id)
             .subscribe(alert => {
+                // clear alerts when an empty alert is received
                 if (!alert.message) {
+                    // filter out alerts without 'keepAfterRouteChange' flag
                     this.alerts = this.alerts.filter(x => x.keepAfterRouteChange);
 
                     // remove 'keepAfterRouteChange' flag on the rest
@@ -31,11 +33,13 @@ export class AlertComponent implements OnInit, OnDestroy {
                 // add alert to array
                 this.alerts.push(alert);
 
+                // auto close alert if required
                 if (alert.autoClose) {
-                    setTimeout(() => this.removeAlert(alert), 2000);
+                    setTimeout(() => this.removeAlert(alert), 3000);
                 }
            });
 
+        // clear alerts on location change
         this.routeSubscription = this.router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
                 this.alertService.clear(this.id);
@@ -44,6 +48,7 @@ export class AlertComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        // unsubscribe to avoid memory leaks
         this.alertSubscription.unsubscribe();
         this.routeSubscription.unsubscribe();
     }
@@ -53,12 +58,15 @@ export class AlertComponent implements OnInit, OnDestroy {
         if (!this.alerts.includes(alert)) return;
 
         if (this.fade) {
+            // fade out alert
             this.alerts.find(x => x === alert).fade = true;
 
+            // remove alert after faded out
             setTimeout(() => {
                 this.alerts = this.alerts.filter(x => x !== alert);
             }, 250);
         } else {
+            // remove alert
             this.alerts = this.alerts.filter(x => x !== alert);
         }
     }

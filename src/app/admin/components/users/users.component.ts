@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { User } from 'src/app/Model';
 import { AlertService, DataService } from 'src/app/services';
 
 @Component({
@@ -10,12 +11,13 @@ import { AlertService, DataService } from 'src/app/services';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit, OnDestroy {
-  users: any;
+  users = null;
   dataSubscription: Subscription;
 
   p: number = 1;
   constructor(
     private dataService: DataService,
+    private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService
   ) {}
