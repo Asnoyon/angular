@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { DataService, AlertService } from 'src/app/services';
 import { CustomValidators } from 'src/app/Utils/CustomValidators';
@@ -10,12 +11,13 @@ import { CustomValidators } from 'src/app/Utils/CustomValidators';
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.css'],
 })
-export class RegistrationFormComponent implements OnInit {
+export class RegistrationFormComponent implements OnInit, OnDestroy {
   signUpForm: FormGroup;
   roles: string[] = ['Admin', 'User'];
 
   submitted: boolean;
   loading: boolean;
+  registerSubscription: Subscription;
 
   constructor(
     private dataService: DataService,
@@ -23,6 +25,9 @@ export class RegistrationFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    if(this.submitted) this.registerSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -39,7 +44,7 @@ export class RegistrationFormComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.dataService
+    this.registerSubscription = this.dataService
       .register(this.signUpForm.value)
       .pipe(first())
       .subscribe(

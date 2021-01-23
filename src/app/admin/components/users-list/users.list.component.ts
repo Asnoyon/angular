@@ -11,8 +11,7 @@ import { AlertService, DataService } from 'src/app/services';
 })
 export class UsersListComponent implements OnInit, OnDestroy {
   users = null;
-  dataSubscription: Subscription;
-
+  userListSubscription: Subscription;
   p: number = 1;
   constructor(
     private dataService: DataService,
@@ -20,11 +19,11 @@ export class UsersListComponent implements OnInit, OnDestroy {
     private alertService: AlertService
   ) {}
   ngOnDestroy(): void {
-    this.dataSubscription.unsubscribe();
+    this.userListSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.dataSubscription = this.dataService
+    this.userListSubscription = this.dataService
       .getAll()
       .pipe(first())
       .subscribe((data) => {
